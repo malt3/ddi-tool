@@ -58,7 +58,7 @@ func (i *Image) GetCmdline() (*cmdline.Cmdline, error) {
 
 	efiPartition := io.NewSectionReader(i.file, efiSectionStart, efiSectionSize)
 
-	fileContentOffset, fileContentSize, err := fat.FileContentSection(efiPartition, efiSectionStart, i.blocksize, i.ukiPath)
+	fileContentOffset, fileContentSize, err := fat.FileContentSection(efiPartition, efiSectionSize, i.blocksize, i.ukiPath)
 	if err != nil {
 		return nil, fmt.Errorf("finding cmdline: getting file content section within EFI partition: %w", err)
 	}
