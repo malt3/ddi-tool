@@ -14,10 +14,10 @@ type FATReader interface {
 	io.Seeker
 }
 
-func FileContentSection(r FATReader, site, blocksize int64, path string) (int64, int64, error) {
+func FileContentSection(r FATReader, size, blocksize int64, path string) (int64, int64, error) {
 	var fsFile util.File
 	fsFile = &nopWriter{r}
-	fs, err := fat32.Read(fsFile, site, 0, blocksize)
+	fs, err := fat32.Read(fsFile, size, 0, blocksize)
 	if err != nil {
 		return 0, 0, err
 	}
